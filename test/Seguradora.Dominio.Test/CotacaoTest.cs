@@ -1,3 +1,4 @@
+using Seguradora.Dominio.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +83,14 @@ namespace Seguradora.Dominio.Test
             };
             Cotacao cotacao = CotacaoCalculada();
             Assert.Equal(numeroParcelas, cotacao.Parcelas);
+        }
+
+        [Fact]
+        public void DiaVencimentoTest()
+        {
+            var proximoMes = DateTime.Now.AddMonths(1);
+            Cotacao cotacao = CotacaoCalculada();
+            Assert.Equal(proximoMes.RetornaQuintoDiaUtil(), cotacao.PrimeiroVencimento);
         }
 
         private Cotacao CotacaoCalculada()

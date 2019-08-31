@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Seguradora.Dominio.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,28 +29,13 @@ namespace Seguradora.Dominio
             ValorParcelas = CalcularValorParcelas();
         }
 
-        private decimal CalcularValorParcelas() => Math.Round(Premio / Parcelas);
+        private decimal CalcularValorParcelas() => Math.Round(Premio / Parcelas, 2);
 
         private DateTime CalcularPrimeiroVencimento()
         {
             var proximoMes = DateTime.Now.AddMonths(1);
-            var primeiroDia = new DateTime(proximoMes.Year, proximoMes.Month, 1);
-            var quintoDiaUtil = RetornaQuintoDiaUtil(primeiroDia);
-            return new DateTime(proximoMes.Year, proximoMes.Month, quintoDiaUtil);
-        }
 
-        private int RetornaQuintoDiaUtil(DateTime primeiroDia)
-        {
-            switch (primeiroDia.DayOfWeek)
-            {                
-                case DayOfWeek.Monday:
-                    return 5;
-                case DayOfWeek.Saturday:
-                case DayOfWeek.Sunday:
-                    return 6;                
-                default:
-                    return 7;
-            }
+            return proximoMes.RetornaQuintoDiaUtil();
         }
 
         private int CalcularNumeroParcelas(decimal premio)
