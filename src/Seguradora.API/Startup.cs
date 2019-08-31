@@ -23,6 +23,7 @@ namespace Seguradora.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ICoberturaRepository, CoberturaRepository>();
+            services.AddScoped<ICidadeRepository, CidadeRepository>();
             services.AddScoped<ICalculadoraSeguro, CalculadoraSeguro>();
             services.AddScoped<ICotacaoValidator, CotacaoValidator>();
             services.AddScoped<IdadeValidator>();
