@@ -38,5 +38,10 @@ namespace Seguradora.Repository
         {
             return CoberturasDataSet.Where(o => idsCoberturas.Contains(o.Id));
         }
+
+        public async Task<IEnumerable<Cobertura>> Obter()
+        {
+            return CoberturasDataSet;
+        }
     }
 }

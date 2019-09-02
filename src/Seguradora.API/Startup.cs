@@ -41,6 +41,7 @@ namespace Seguradora.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(o => o.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             }
 
             app.UseMvc();
